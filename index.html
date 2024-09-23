@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="icon.jpeg">
+    <link rel="stylesheet" href="Style.Pace.css">
+    <title>Calculadora de Pace</title>
+    <script>
+        function mostrarDiv(divId) {
+            document.getElementById('inicio').classList.add('hidden');
+            document.getElementById('pace1').classList.add('hidden');
+            document.getElementById('pace2').classList.add('hidden');
+            document.getElementById(divId).classList.remove('hidden');
+        }
+
+        function calcularPace(formId, resultadoId) {
+            var form = document.getElementById(formId);
+            var distancia = parseFloat(form.querySelector('[name="distance"]').value);
+            var horas = form.querySelector('[name="hours"]') ? parseFloat(form.querySelector('[name="hours"]').value) : 0;
+            var minutos = parseFloat(form.querySelector('[name="minutes"]').value);
+            var segundos = parseFloat(form.querySelector('[name="seconds"]').value);
+
+            if (isNaN(distancia) || isNaN(minutos) || isNaN(segundos) || (form.querySelector('[name="hours"]') && isNaN(horas))) {
+                alert("Por favor, insira valores válidos para todos os campos.");
+                return;
+            }
+
+            var totalMinutos = (horas * 60) + minutos + (segundos / 60);
+            var pace = totalMinutos / distancia;
+
+            pace = Math.round(pace * 100) / 100;
+              
+             if(pace % 1 >= 0.60){
+                pace = Math.ceil(pace);
+             }
+             document.getElementById(resultadoId).innerHTML = `<span class="pace-text">PACE:</span> ${pace.toFixed(2)} <span class="pace-text">min/KM</span>`;
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Calculadora de Pace</h1>
+    </header>
+    <nav>
+        <button type="button" onclick="mostrarDiv('pace1')">Calculadora de Pace 1</button>
+        <button type="button" onclick="mostrarDiv('pace2')">Calculadora de Pace 2</button>
+        <button type="button" onclick="mostrarDiv('inicio')">Página Inicial</button>
+    </nav>
+    <div id="inicio" class="container">
+        <h2><b>Bem-vindo à Calculadora de Pace</b></h2>
+        <h3><i>está calculadora te dará média em sua quilometragem</i></h3>
+        <p>Use os botões abaixo para calcular o pace.</p>
+    </div>
+    <div id="pace1" class="container hidden">
+        <form id="formPace1">
+            <label for="distance">Distância (Km):</label>
+            <input type="number" name="distance" step="0.01" required><br>
+
+            <label for="hours">Horas:</label>
+            <input type="number" name="hours" min="0"><br>
+
+            <label for="minutes">Minutos:</label>
+            <input type="number" name="minutes" max="59" min="0" required><br>
+
+            <label for="seconds">Segundos:</label>
+            <input type="number" name="seconds" min="0" max="59" required><br>
+
+            <button type="button" onclick="calcularPace('formPace1', 'resultadoPace1')"><b>Calcular Pace</b></button>
+        </form>
+        <div id="resultadoPace1" class="result"></div>
+    </div>
+    <div id="pace2" class="container hidden">
+        <form id="formPace2">
+            <label for="distance">Distância (Km):</label>
+            <input type="number" name="distance" step="0.01" required><br>
+
+            <label for="minutes">Minutos:</label>
+            <input type="number" name="minutes" max="59" min="0" required><br>
+
+            <label for="seconds">Segundos:</label>
+            <input type="number" name="seconds" min="0" max="59" required><br>
+
+            <button type="button" onclick="calcularPace('formPace2', 'resultadoPace2')"><b>Calcular Pace</b></button>
+        </form>
+        <div id="resultadoPace2" class="result"></div>
+    </div>   
+</body>
+</html>
