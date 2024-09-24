@@ -31,10 +31,15 @@
 
             pace = Math.round(pace * 100) / 100;
               
-             if(pace % 1 >= 0.60){
+             if(pace % 1 >= 0.59){
                 pace = Math.ceil(pace);
              }
-             document.getElementById(resultadoId).innerHTML = `<span class="pace-text">PACE:</span> ${pace.toFixed(2)} <span class="pace-text">min/KM</span>`;
+        
+             var velocidade = 60 / pace; 
+
+             document.getElementById(resultadoId).innerHTML = `<span class="pace-text">PACE:</span>${pace.toFixed(2)}<span class="pace-text">min/KM</span><br>
+             <span class="pace-text">Velocidade Média:</span>${velocidade.toFixed(2)}<span class="pace-text">Km/h</span>`;
+
         }
     </script>
 </head>
