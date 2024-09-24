@@ -1,6 +1,6 @@
 body{
     font-family: Arial, sans-serif;
-    background-color: #77d10f;
+    background-color: #ddd;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -10,7 +10,7 @@ body{
 }
 @media only screen and (max-width: 600px) {
     body {
-        background-color: #77d10f; 
+        background-color: #ddd; 
     }
 }
 
