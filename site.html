@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="faster.img.webp">
+    <link rel="stylesheet" href="style.css">
+    <title>Faster Run</title>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <img src="faster.img.webp" alt="Logo">
+            <h1><i><b>Faster Run</b></i></h1>
+    <select id="selectButton" onchange="navigate()">
+       <option value="">Escolha um Opção</option>
+       <option value="index.html">Calculadora de Pace</option>
+       <option value="anotherpage.html">Outra pagina</option>
+    </select>
+  </div> 
+</header>
+    <script>
+        function navigate() {
+            var select = document.getElementById("selectButton");
+            var selectedValue = select.value;
+            if (selectedValue) {
+                window.location.href = selectedValue;
+            } else {
+                alert("Por favor, selecione uma opção.");
+            }
+        }
+    </script>
+    <div class="container">
+    <h2><b>Bem-vindo ao Faster Run!</b></h2>
+    <h3>Melhor site para você corredor!!</h3>
+    <p>Escolha as opções a cima e entre no mundo da corrida.</p>
+    <video width="500px" autoplay muted loop>
+        <source src="faster.video.mp4" type="video/mp4">
+        seu navegador não suporta este video
+    </video>
+</div>
+
+</body>
+</html>
